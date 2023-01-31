@@ -11,6 +11,9 @@
 		8259EFE52988604D00FE9384 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259EFE42988604D00FE9384 /* ContentView.swift */; };
 		8259EFE72988604E00FE9384 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8259EFE62988604E00FE9384 /* Assets.xcassets */; };
 		8259EFEA2988604E00FE9384 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8259EFE92988604E00FE9384 /* Preview Assets.xcassets */; };
+		8259EFF2298860EC00FE9384 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8259EFF1298860EC00FE9384 /* FirebaseDatabase */; };
+		8259EFF42988618300FE9384 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259EFF32988618300FE9384 /* FirebaseManager.swift */; };
+		8259EFF629886A7F00FE9384 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8259EFF529886A7E00FE9384 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,8 @@
 		8259EFE42988604D00FE9384 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8259EFE62988604E00FE9384 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8259EFE92988604E00FE9384 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8259EFF32988618300FE9384 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		8259EFF529886A7E00FE9384 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8259EFF2298860EC00FE9384 /* FirebaseDatabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,10 +57,12 @@
 		8259EFE12988604D00FE9384 /* Haptic Tester */ = {
 			isa = PBXGroup;
 			children = (
+				8259EFF529886A7E00FE9384 /* GoogleService-Info.plist */,
 				8259EFE22988604D00FE9384 /* Haptic_TesterApp.swift */,
 				8259EFE42988604D00FE9384 /* ContentView.swift */,
 				8259EFE62988604E00FE9384 /* Assets.xcassets */,
 				8259EFE82988604E00FE9384 /* Preview Content */,
+				8259EFF32988618300FE9384 /* FirebaseManager.swift */,
 			);
 			path = "Haptic Tester";
 			sourceTree = "<group>";
@@ -83,6 +91,9 @@
 			dependencies = (
 			);
 			name = "Haptic Tester";
+			packageProductDependencies = (
+				8259EFF1298860EC00FE9384 /* FirebaseDatabase */,
+			);
 			productName = "Haptic Tester";
 			productReference = 8259EFDF2988604D00FE9384 /* Haptic Tester.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +122,9 @@
 				Base,
 			);
 			mainGroup = 8259EFD62988604D00FE9384;
+			packageReferences = (
+				8259EFF0298860EC00FE9384 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 8259EFE02988604D00FE9384 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,6 +141,7 @@
 			files = (
 				8259EFEA2988604E00FE9384 /* Preview Assets.xcassets in Resources */,
 				8259EFE72988604E00FE9384 /* Assets.xcassets in Resources */,
+				8259EFF629886A7F00FE9384 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8259EFF42988618300FE9384 /* FirebaseManager.swift in Sources */,
 				8259EFE52988604D00FE9384 /* ContentView.swift in Sources */,
 				8259EFE32988604D00FE9384 /* Haptic_TesterApp.swift in Sources */,
 			);
@@ -275,6 +291,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,6 +321,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -339,6 +357,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8259EFF0298860EC00FE9384 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8259EFF1298860EC00FE9384 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8259EFF0298860EC00FE9384 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8259EFD72988604D00FE9384 /* Project object */;
 }
