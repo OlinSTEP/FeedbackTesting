@@ -9,15 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var firebase = FirebaseManager.shared
-    @State private var nickname: String = ""
+    let myDeviceID = UIDevice.current.identifierForVendor!.uuidString
     
     var body: some View {
         VStack {
             Text("Change Device Nickname")
-            TextField("Nickname", text: $nickname)
+            TextField("Nickname", text: $firebase.myNickname)
             Button("Submit") {
-                firebase.changeNickname(deviceID: UIDevice.current.identifierForVendor!.uuidString, newNickname: nickname)
-                print("pressed \(nickname)")
+                firebase.changeNickname(deviceID: myDeviceID, newNickname: firebase.myNickname)
             }
             List(firebase.devices.sorted(by: <), id: \.key) { deviceID, name in
                 Text(name).onTapGesture {

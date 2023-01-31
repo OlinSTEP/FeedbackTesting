@@ -17,6 +17,7 @@ class FirebaseManager: ObservableObject {
     
     private let myDeviceID = UIDevice.current.identifierForVendor!.uuidString
     @Published private(set) var devices: [String: String] = [:]
+    @Published var myNickname: String = ""
     private var myServerTimestamp: Double?
     
     private init() {
@@ -78,6 +79,9 @@ class FirebaseManager: ObservableObject {
             if value["haptic"] as? Bool == true {
                 self.generateHaptic()
                 self.dbRef?.child("devices").child(self.myDeviceID).child("haptic").setValue(false)
+            }
+            if let myName = value["name"] as? String {
+                self.myNickname = myName
             }
         }
     }
