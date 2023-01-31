@@ -13,6 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
+            Text("Change Device Nickname")
             TextField("Nickname", text: $nickname)
             Button("Submit") {
                 firebase.changeNickname(deviceID: UIDevice.current.identifierForVendor!.uuidString, newNickname: nickname)

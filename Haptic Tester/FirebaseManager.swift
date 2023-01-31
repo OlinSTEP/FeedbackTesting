@@ -47,45 +47,37 @@ class FirebaseManager: ObservableObject {
     }
     
     func setupListeners() {
-        guard let myServerTimestamp = myServerTimestamp else {
-            return
-        }
         dbRef?.child("devices").observe(.childAdded) { (snapshot, error) in
-            guard let value = snapshot.value as? [String: Any] else {
-                return
-            }
-            guard let timestamp = value["timestamp"] as? Double else {
-                return
-            }
-            let name = value["name"] as? String ?? snapshot.key
-            guard abs(timestamp - myServerTimestamp)/1000.0 < 600 else {
-                return
-            }
-            print("checking \(snapshot.key)")
-            if self.devices[snapshot.key] != name {
-                self.devices[snapshot.key] = name
-            }
+            self.handleDBUpdate(snapshot)
         }
         
         dbRef?.child("devices").observe(.childChanged) { (snapshot, error) in
-            guard let value = snapshot.value as? [String: Any] else {
-                return
-            }
-            guard let timestamp = value["timestamp"] as? Double else {
-                return
-            }
-            guard abs(timestamp - myServerTimestamp)/1000.0 < 600 else {
-                return
-            }
-            let name = value["name"] as? String ?? snapshot.key
-            if self.devices[snapshot.key] != name {
-                self.devices[snapshot.key] = name
-            }
-            if snapshot.key == self.myDeviceID {
-                if value["haptic"] as? Bool == true {
-                    self.generateHaptic()
-                    self.dbRef?.child("devices").child(self.myDeviceID).child("haptic").setValue(false)
-                }
+            self.handleDBUpdate(snapshot)
+        }
+    }
+    
+    func handleDBUpdate(_ snapshot: DataSnapshot) {
+        guard let myServerTimestamp = myServerTimestamp else {
+            return
+        }
+        guard let value = snapshot.value as? [String: Any] else {
+            return
+        }
+        guard let timestamp = value["timestamp"] as? Double else {
+            return
+        }
+        let name = value["name"] as? String ?? snapshot.key
+        guard abs(timestamp - myServerTimestamp)/1000.0 < 600 else {
+            return
+        }
+        print("checking \(snapshot.key)")
+        if self.devices[snapshot.key] != name {
+            self.devices[snapshot.key] = name
+        }
+        if snapshot.key == self.myDeviceID {
+            if value["haptic"] as? Bool == true {
+                self.generateHaptic()
+                self.dbRef?.child("devices").child(self.myDeviceID).child("haptic").setValue(false)
             }
         }
     }
