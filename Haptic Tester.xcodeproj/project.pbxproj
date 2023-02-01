@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8213CCF62989840400C15E8B /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8213CCF52989840400C15E8B /* HapticManager.swift */; };
 		8259EFE32988604D00FE9384 /* Haptic_TesterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259EFE22988604D00FE9384 /* Haptic_TesterApp.swift */; };
 		8259EFE52988604D00FE9384 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259EFE42988604D00FE9384 /* ContentView.swift */; };
 		8259EFE72988604E00FE9384 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8259EFE62988604E00FE9384 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8213CCF52989840400C15E8B /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		8259EFDF2988604D00FE9384 /* Haptic Tester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Haptic Tester.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8259EFE22988604D00FE9384 /* Haptic_TesterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptic_TesterApp.swift; sourceTree = "<group>"; };
 		8259EFE42988604D00FE9384 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				8259EFE62988604E00FE9384 /* Assets.xcassets */,
 				8259EFE82988604E00FE9384 /* Preview Content */,
 				8259EFF32988618300FE9384 /* FirebaseManager.swift */,
+				8213CCF52989840400C15E8B /* HapticManager.swift */,
 			);
 			path = "Haptic Tester";
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 			files = (
 				8259EFF42988618300FE9384 /* FirebaseManager.swift in Sources */,
 				8259EFE52988604D00FE9384 /* ContentView.swift in Sources */,
+				8213CCF62989840400C15E8B /* HapticManager.swift in Sources */,
 				8259EFE32988604D00FE9384 /* Haptic_TesterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

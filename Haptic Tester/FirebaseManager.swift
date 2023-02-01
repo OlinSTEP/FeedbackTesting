@@ -12,6 +12,7 @@ import UIKit
 
 class FirebaseManager: ObservableObject {
     public static var shared = FirebaseManager()
+    let hapticManager = HapticManager()
     private var dbRef: DatabaseReference?
     private var generator = UIImpactFeedbackGenerator(style: .heavy)
     
@@ -29,7 +30,7 @@ class FirebaseManager: ObservableObject {
     
     /// Setup observers for Firebase and set timestamp and haptic flags
     private func setupFirebase() {
-        dbRef?.child("devices").child(myDeviceID).updateChildValues(["haptic": false, "timestamp": ServerValue.timestamp()]) { (error, ref) -> Void in
+        dbRef?.child("devices").child(myDeviceID).updateChildValues(["haptic": ["doHaptic": false], "timestamp": ServerValue.timestamp()]) { (error, ref) -> Void in
             guard error == nil else {
                 return
             }
@@ -75,10 +76,10 @@ class FirebaseManager: ObservableObject {
         if self.devices[snapshot.key] != name {
             self.devices[snapshot.key] = name
         }
-        if snapshot.key == self.myDeviceID {
-            if value["haptic"] as? Bool == true {
-                self.generateHaptic()
-                self.dbRef?.child("devices").child(self.myDeviceID).child("haptic").setValue(false)
+        if snapshot.key == self.myDeviceID, let haptic = value["haptic"] as? [String: Any] {
+            if haptic["doHaptic"] as? Bool == true, let intensity = haptic["intensity"] as? Float, let sharpness = haptic["sharpness"] as? Float, let attackTime = haptic["attackTime"] as? Float, let releaseTime = haptic["releaseTime"] as? Float, let decayTime = haptic["decayTime"] as? Float {
+                self.generateHaptic(description: HapticDescription(intensity: intensity, sharpness: sharpness, attackTime: attackTime, releaseTime: releaseTime, decayTime: decayTime))
+                self.dbRef?.child("devices").child(self.myDeviceID).child("haptic").child("doHaptic").setValue(false)
             }
             if let myName = value["name"] as? String {
                 self.myNickname = myName
@@ -86,12 +87,13 @@ class FirebaseManager: ObservableObject {
         }
     }
     
-    func sendHaptic(deviceID: String) {
-        dbRef?.child("devices").child(deviceID).child("haptic").setValue(true)
+    func sendHaptic(deviceID: String, description: HapticDescription) {
+        dbRef?.child("devices").child(deviceID).child("haptic").updateChildValues(["doHaptic": true, "intensity": description.intensity, "sharpness": description.sharpness, "attackTime": description.attackTime, "releaseTime": description.releaseTime, "decayTime": description.decayTime])
     }
     
-    private func generateHaptic() {
-        generator.impactOccurred()
+    private func generateHaptic(description: HapticDescription) {
+        hapticManager.adjustHaptics(description: description)
+        hapticManager.unpauseHaptics()
     }
     
     func changeNickname(deviceID: String, newNickname: String) {
